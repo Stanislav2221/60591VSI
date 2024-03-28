@@ -9,7 +9,7 @@ try {
     $stmt = $conn->prepare($sql);
     $stmt->bindValue(':id', $_GET['id']);
     $stmt->execute();
-    $_SESSION['msg'] = "Интсрумент успешно удален";
+    $_SESSION['msg'] = "Инструмент успешно удален";
 
     // return generated id
     // $id = $pdo->lastInsertId('id');
