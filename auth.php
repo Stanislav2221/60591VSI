@@ -1,19 +1,44 @@
 <?php
-require __DIR__ . '/dbconnect.php'; // Подключаем файл с подключением к базе данных
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $login = $_POST['login'];
-    $password = md5($_POST['password']);
+//   $err_msg = '';
 
-    $query = "SELECT * FROM \"user\" WHERE login = :login AND md5password = :password";
-    $stmt = $conn->prepare($query);
-    $stmt->execute(['login' => $login, 'password' => $password]);
+if (isset($_POST["login"]) and $_POST["login"]!='')
+{
+    try {
+        $sql = 'SELECT * FROM users WHERE email=(:login)';
+        $stmt = $conn->prepare($sql);
+        $stmt->bindValue(':login', $_POST['login']);
+        $stmt->execute();
+        //$_SESSION['msg'] = "Вы успешно вошли в систему";
+        // return generated id
+        // $id = $pdo->lastInsertId('id');
 
-    $user = $stmt->fetch();
-
-    if ($user) {
-        $_SESSION['msg'] = "Пользователь аутентифицирован.";
+    } catch (PDOexception $error) {
+        $msg = "Ошибка аутентификации: " . $error->getMessage();
     }
-    else $msg =  "Неправильное имя пользователя!";
+    // если удалось получить строку с паролем из БД
+    if ($row = $stmt->fetch(PDO::FETCH_LAZY)) {
+        if (MD5($_POST["password"]) != $row['password']) $msg = "Неправильный пароль!";
+        else {
+            // успешная аутентификация
+            $_SESSION['login'] = $_POST["login"];
+            $_SESSION['full_name'] = $row['full_name'];
+            $_SESSION['id'] = $row['id'];
+            //if ($row['is_teacher']==1) $_SESSION['teacher'] = true;
+            $msg = "Вы успешно вошли в систему";
+        }
+    } else $msg = "Неправильное имя пользователя!";
+
 }
-?>
+
+if (isset($_GET["logout"])) {
+    $_SESSION = null;
+    $_SESSION['msg'] = "Вы успешно вышли из системы";
+    header('Location: /');
+    exit();
+}
+
+
+
+
+
