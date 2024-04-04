@@ -6,7 +6,7 @@
                 Модель инструмента: <input type="text" name="name">
             </label>
         <p><label>
-                Описание категории: <input type="text" name="description">
+                Количество интсрументов: <input type="text" name="description">
             </label>
         <p><label>
             Категория: <select name="id_category">

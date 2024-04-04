@@ -1,10 +1,9 @@
 <h1>Инструменты:</h1>
 <?php
-//$result = $conn->query("SELECT category.id AS id, category.name AS cname, category.description AS cdesc, category.picture_url, count(task.id) as C FROM category LEFT OUTER JOIN task ON task.id_category=category.id WHERE category.id_user=".$_SESSION['id']." GROUP BY category.id");
 
 $result = $conn->query("SELECT model.id AS id, model.model AS cname, model.colvo AS cdesc,  model.picture_url, tools.name AS tname FROM model LEFT OUTER JOIN tools ON tools.id = model.idtools");
 while ($row = $result->fetch()) {
-//style="max-width: 18rem;"
+
     echo'
         
         <div class="card border-dark mb-3" >
