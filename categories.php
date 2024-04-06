@@ -1,4 +1,4 @@
-<h1>Каталог типов инструментов:</h1>
+<h1>Категории инструментов:</h1>
 <?php
 $result = $conn->query("SELECT tools.id AS id, tools.name AS tname, tools.url FROM tools");
 
@@ -31,7 +31,7 @@ while ($row = $result->fetch()) {
 ?>
 <div class="container">
 
-    <h2>Создание типа инструмента</h2>
+    <h2>Создание категории инструмента</h2>
     <form method="post" action="insertcategory.php" enctype="multipart/form-data">
         <p><label>
                 Тип инструмента: <input type="text" name="name">
