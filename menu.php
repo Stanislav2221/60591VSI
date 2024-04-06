@@ -4,6 +4,9 @@
     <script src="js/jquery-3.5.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/modal.js"></script>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+
 </head>
 <body>
 
@@ -21,10 +24,10 @@
                         <a class="nav-link active" aria-current="page" href="#">Главная</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php?page=c">Инструменты</a>
+                        <a class="nav-link" href="index.php?page=c">Каталог</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php?page=t">Добавление инструмнта</a>
+                        <a class="nav-link" href="index.php?page=t">Инструменты</a>
                     </li>
                 </ul>
             </div>
